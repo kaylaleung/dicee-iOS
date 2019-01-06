@@ -2,76 +2,47 @@
 //  ViewController.swift
 //  Dicee
 //
-//  Created by Angela Yu on 25/01/2015.
-//  Copyright (c) 2015 London App Brewery. All rights reserved.
+//  Created by Kayla Leung on 1/4/19.
+//  Copyright © 2019 Kayla Leung. All rights reserved.
 //
-
-
-
 
 import UIKit
 
 class ViewController: UIViewController {
+
+    var randomDiceIndex1 : Int = 0
+    var randomDiceIndex2 : Int = 0
     
-    //TODO: Step 2 - Drop your imageView IBOutlets just below this line
+    let diceArray = ["dice1", "dice2", "dice3", "dice4", "dice6", "dice6"]
     
-    
-    //TODO: Step 4 - Declare an array called diceArray here.
-    
-    
-    //TODO: Step 5 - Declare 2 variables that are of type Int, called firstRandomIndex and secondRandomIndex
-    
-    
+    @IBOutlet weak var diceImageView1: UIImageView!
+    @IBOutlet weak var diceImageView2: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateDiceImage()
+
+    }
+
+
+    @IBAction func rollButtonPressed(_ sender: UIButton) {
+        
+        updateDiceImage()
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
-    //TODO: Step 6 - Make a method called updateDiceImages() here.
-    
-    
-        //TODO: Step 7 - Inside the updateDiceImages method you just made: Assign a random number between 0 and 5 to firstRandomIndex and secondRandomIndex
+    func updateDiceImage()
+    {
+        randomDiceIndex1 = Int(arc4random_uniform(6))
+        randomDiceIndex2 = Int(arc4random_uniform(6))
         
-        //TODO: Step 8 - Inside updateDiceImages method: Set the image for firstDice by using the filename from the diceArray at the value of firstRandomIndex.
-        
-        
-        //TODO: Step 9 - Inside updateDiceImages: Do the same for the secondDiceImageView with secondRandomIndex
-        
-        
-    
- 
-    
-    
-    //TODO: Step 3 - Link up the "Roll" button to an IBAction called rollButtonPressed() just below this line.
-    
-    
-        //TODO: Step 10 - Inside the rollButtonPressed method: Call updateDiceImages() function in the rollButtonPressed()  method.
-        
-    
-    
-    
- 
-    
-    override func canBecomeFirstResponder() -> Bool {
-        return true
-    }
-    
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == .MotionShake {
-            
-            //TODO: Step 11 - Call updateDiceImages() method here
-            
-        }
+        diceImageView1.image = UIImage(named: diceArray[randomDiceIndex1])
+        diceImageView2.image = UIImage(named: diceArray[randomDiceIndex2])
         
     }
     
-    
-    
-    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        
+        updateDiceImage()
+    }
 }
 
